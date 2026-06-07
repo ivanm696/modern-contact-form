@@ -1,166 +1,170 @@
 # ivanm696 — Developer Portfolio
 
-Personal portfolio website for **Ivan M.** — TypeScript & JavaScript developer from Moldova.
+Personal developer portfolio with contact form built with Next.js 16, React 19 and shadcn/ui.
 
-## Live Demo
-
-> Deploy to Vercel in one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ivanm696/modern-contact-form)
+**Live:** [Deploy on Vercel](#deploy)
 
 ---
 
 ## Stack
 
-| Technology | Version | Purpose |
-|---|---|---|
-| [Next.js](https://nextjs.org) | 16 | React framework (App Router) |
-| [React](https://react.dev) | 19 | UI library |
-| [TypeScript](https://www.typescriptlang.org) | 5.7 | Type safety |
-| [Tailwind CSS](https://tailwindcss.com) | v4 | Styling |
-| [shadcn/ui](https://ui.shadcn.com) | latest | UI components (New York style) |
-| [Lucide React](https://lucide.dev) | latest | Icons |
-| [Vercel Analytics](https://vercel.com/analytics) | latest | Production analytics |
-| [Geist Font](https://vercel.com/font) | latest | Typography |
+| Technology | Version |
+|---|---|
+| Next.js | 16.2.6 |
+| React | 19 |
+| TypeScript | 5.7.3 |
+| Tailwind CSS | v4 |
+| shadcn/ui | latest |
+| Vercel Analytics | 1.6.1 |
 
 ---
 
-## Страницы и секции
+## Pages & Sections
 
-Всё на одной странице (`app/page.tsx`) с якорной навигацией:
+### Portfolio (`app/page.tsx`)
 
-| Секция | ID | Описание |
-|---|---|---|
-| **Hero** | — | Имя, должность, локация (Moldova), статистика GitHub |
-| **About** | `#about` | Биография, Quick Facts |
-| **Projects** | `#projects` | 4 избранных проекта с ссылками на GitHub |
-| **Skills** | `#skills` | TypeScript, JavaScript, React, Node.js, VS Code Extensions, WebContainers |
-| **Contact** | `#contact` | Ссылки на GitHub, LinkedIn, Email |
-| **Footer** | — | Copyright |
+| Section | Description |
+|---|---|
+| **Hero** | Name, tagline, location badge, GitHub + Contact buttons, stats (repos / followers / years active) |
+| **About** | Bio text + quick facts card |
+| **Projects** | Featured repositories with tech stack badges and external links |
+| **Skills** | Progress bars for TypeScript, JavaScript, React, Node.js, VS Code Extensions, WebContainers |
+| **Contact** | GitHub, LinkedIn, Email links |
+| **Footer** | Copyright |
 
-### Контактная форма (`components/contact-form.tsx`)
+### Contact Form (`components/contact-form.tsx`)
 
-- Поля: Name, Email, Subject, Message
-- Состояния: idle → loading (spinner) → success (✅ анимация)
-- Client component (`"use client"`)
-- Форма сейчас симулирует отправку (1.5s задержка) — подключи реальный backend (Resend, Formspree, EmailJS)
+- Fields: Name, Email, Subject, Message
+- Loading state with spinner
+- Success state with checkmark animation
+- Reset button to send another message
 
 ---
 
-## Структура проекта
+## Project Structure
 
 ```
 modern-contact-form/
 ├── app/
-│   ├── layout.tsx          # Root layout: Geist шрифт, метаданные, Vercel Analytics
-│   ├── page.tsx            # Главная страница (все секции)
-│   └── globals.css         # Tailwind CSS v4 + CSS переменные темы
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout (metadata, fonts, Analytics)
+│   └── page.tsx             # Portfolio page (all sections)
 ├── components/
-│   ├── contact-form.tsx    # Контактная форма (client component)
-│   ├── theme-provider.tsx  # next-themes провайдер
-│   └── ui/                 # shadcn/ui компоненты (60+ компонентов)
-├── hooks/                  # Кастомные React хуки
+│   ├── contact-form.tsx     # Contact form component
+│   ├── theme-provider.tsx   # next-themes wrapper
+│   └── ui/                  # shadcn/ui components (60+)
+├── hooks/
+│   ├── use-mobile.ts        # Mobile breakpoint hook
+│   └── use-toast.ts         # Toast notifications hook
 ├── lib/
-│   └── utils.ts            # cn() утилита (clsx + tailwind-merge)
-├── public/                 # Иконки: icon.svg, icon-light-32x32.png, icon-dark-32x32.png
-├── components.json         # Конфиг shadcn/ui (New York style, neutral base color)
-├── next.config.mjs         # Next.js конфиг (images unoptimized)
-├── postcss.config.mjs      # PostCSS для Tailwind v4
-└── tsconfig.json           # TypeScript конфиг
+│   └── utils.ts             # cn() utility (clsx + tailwind-merge)
+├── public/                  # Icons and placeholder images
+├── styles/
+│   └── globals.css          # Tailwind base styles
+├── components.json          # shadcn/ui config
+├── next.config.mjs          # Next.js config
+├── postcss.config.mjs       # PostCSS + Tailwind
+└── tsconfig.json            # TypeScript config
 ```
 
 ---
 
-## Быстрый старт
+## Quick Start
 
 ```bash
 git clone https://github.com/ivanm696/modern-contact-form.git
 cd modern-contact-form
-
-pnpm install   # или npm install
-pnpm dev       # → http://localhost:3000
+pnpm install
+pnpm dev
 ```
 
-### Сборка
-
-```bash
-pnpm build   # production build
-pnpm start   # запуск production сервера
-```
+Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## Кастомизация
+## Customization
 
-### Изменить проекты
-
-Открой `app/page.tsx`, найди массив `projects`:
+### Update your info — `app/page.tsx`
 
 ```ts
+// Projects
 const projects = [
   {
-    name: "bolt.new",
-    description: "AI-powered development environment...",
-    tech: ["TypeScript", "React", "WebContainers"],
-    url: "https://github.com/ivanm696/bolt.new",
+    name: "your-project",
+    description: "Description",
+    tech: ["TypeScript", "React"],
+    url: "https://github.com/ivanm696/your-project",
   },
-  // добавь свои проекты
 ]
-```
 
-### Изменить навыки
-
-Там же, массив `skills`:
-
-```ts
+// Skills
 const skills = [
   { name: "TypeScript", level: 95 },
-  { name: "React", level: 88 },
-  // добавь свои навыки (level: 0–100)
+]
+
+// Stats
+const stats = [
+  { label: "Repositories", value: "90+" },
 ]
 ```
 
-### Подключить реальную отправку формы
+### Connect real email — `components/contact-form.tsx`
 
-В `components/contact-form.tsx` замени симуляцию на реальный API:
+Replace the simulated submit with a real API call:
 
 ```ts
-// Пример с Resend
-const res = await fetch('/api/contact', {
-  method: 'POST',
-  body: JSON.stringify({ name, email, subject, message }),
-})
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault()
+  setIsSubmitting(true)
+
+  const formData = new FormData(e.currentTarget)
+
+  // Example: Resend, EmailJS, Formspree, etc.
+  await fetch('/api/contact', {
+    method: 'POST',
+    body: JSON.stringify(Object.fromEntries(formData)),
+    headers: { 'Content-Type': 'application/json' },
+  })
+
+  setIsSubmitting(false)
+  setIsSubmitted(true)
+}
 ```
 
-### Добавить shadcn/ui компонент
+---
+
+## Deploy
+
+### Vercel (recommended)
+
+1. Push to GitHub
+2. Go to [vercel.com](https://vercel.com) → **Add New Project**
+3. Import `ivanm696/modern-contact-form`
+4. Framework: **Next.js** (auto-detected)
+5. Click **Deploy**
+
+Vercel Analytics activates automatically in production — no extra config needed.
+
+### Other platforms
 
 ```bash
-npx shadcn@latest add [component-name]
+pnpm build   # generates .next/
+pnpm start   # starts production server on :3000
 ```
 
 ---
 
-## Деплой на Vercel
+## Scripts
 
-```bash
-npm install -g vercel
-vercel login
-vercel --prod
-```
-
-Или через [Vercel Dashboard](https://vercel.com/new) — импортируй репозиторий, Next.js определяется автоматически.
-
-> **Analytics** включается автоматически только в `production` окружении.
+| Command | Description |
+|---|---|
+| `pnpm dev` | Development server |
+| `pnpm build` | Production build |
+| `pnpm start` | Start production server |
+| `pnpm lint` | ESLint check |
 
 ---
 
-## Метаданные
+## License
 
-Определены в `app/layout.tsx`:
-- **Title:** `ivanm696 | Developer Portfolio`
-- **Description:** TypeScript & JavaScript developer from Moldova...
-- **Icons:** SVG + PNG варианты для light/dark темы
-
----
-
-© 2026 ivanm696
+MIT © 2026 [ivanm696](https://github.com/ivanm696)
